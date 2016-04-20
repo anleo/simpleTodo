@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="row">
+    <div class="md-col-12">
+      <form style="padding: 0 15px">
+        <div class="form-group">
+          <div class="input-group">
+            <label class="input-group-addon" for="i1">Task name</label>
+            <input type="text" class="form-control" ng-model="newTask.name"
+                   id="i1" placeholder="What do you need to do"
+                   autocomplete="off"
+                   ng-keypress="newTask.name.length && press($event);">
+            <span class="input-group-btn">
+              <button class="btn btn-default btn-success" type="button"
+                      ng-click="newTask.name.length && add(newTask.name)">
+                <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Add
+              </button>
+            </span>
+          </div>
+
+        </div>
+      </form>
+
+      <div style="padding: 0 15px">
+        <div style="padding: 20px 0 10px; text-align: right">
+          <button class="btn btn-sm btn-default" ng-click="markAllDone()" ng-class="{'disabled': !tasks.length}">Mark
+            all
+            done
+          </button>
+          <button class="btn btn-sm btn-default" ng-click="delAllDone()" ng-class="{'disabled': !tasks.length}">Remove
+            all
+            done
+          </button>
+          <button class="btn btn-sm btn-default" ng-click="clearAllTasks()" ng-class="{'disabled': !tasks.length}">Clear
+            tasks
+          </button>
+        </div>
+
+        <ul class="list-group" ng-show="!tasks.length">
+          <li class="list-group-item text-center disabled">No tasks yet</li>
+        </ul>
+
+        <ul class="list-group" ng-show="tasks.length">
+          <li ng-repeat="task in tasks track by $index"
+              class="list-group-item"
+              ng-class="{'done' : task.done}"
+              ng-click="doneTask(task)">
+            <span ng-if="!task.done">{{$index+1}}.</span>
+            <span ng-if="task.done"><i class="fa fa-check" aria-hidden="true"></i></span>
+            &nbsp;
+            <span>{{task.name}}</span>
+              <span ng-click="$event.stopPropagation(); del($index, task)"
+                    ng-show="task.done"
+                    class="text-danger pull-right">
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  * {
+    outline: none !important;
+  }
+
+  .list-group-item {
+    padding: 5px 15px;
+    transition: background-color 300ms ease, color 300ms ease;
+  }
+
+  .list-group-item.done {
+    background-color: #eee;
+    color: #aaa;
+    text-decoration: line-through;
+  }
+
+  .list-group-item:hover {
+    background-color: #efefef;
+  }
+</style>

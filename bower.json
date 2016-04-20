@@ -1,0 +1,23 @@
+{
+  "name": "starter",
+  "version": "0.0.0",
+  "authors": [
+    "Andrey Leontyev <skaliozz@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5.3",
+    "angular-pouchdb": "~4.1.0",
+    "angular-ui-router": "~0.2.18",
+    "bootstrap": "~3.3.6",
+    "lodash": "~4.11.1",
+    "pouchdb": "~5.3.1"
+  }
+}
